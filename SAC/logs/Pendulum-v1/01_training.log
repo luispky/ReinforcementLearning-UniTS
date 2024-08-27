@@ -1,0 +1,80 @@
+SAC Agent Configuration:
+hidden_units: [128, 128]
+conv_layers: None
+log_std_interval: [-20, 2]
+gamma: 0.99
+load_best: False
+replay_buffer_size: 100000
+batch_size: 64
+init_temperature: 0.2
+actor_lr: 0.0003
+critic_lr: 0.0003
+temperature_lr: 0.0003
+actor_update_freq: 2
+critic_target_update_freq: 2
+tau: 0.005
+
+Train Configuration:
+gradient_steps: 1
+max_episodes: 400
+warmup_steps: 10000
+print_interval: 10
+checkpoint_interval: 10
+test_episodes: 25
+save_replay_buffer: False
+
+Environment Seed: None
+
+Starting SAC Training
+
+No pre-trained model found, training from scratch.
+
+Episode 10 - Reward: -1480.48 - Alpha: 0.20000 - Steps: 2001
+Episode 20 - Reward: -1349.45 - Alpha: 0.20000 - Steps: 4001
+Episode 30 - Reward: -1739.86 - Alpha: 0.20000 - Steps: 6001
+Episode 40 - Reward: -1608.10 - Alpha: 0.20000 - Steps: 8001
+Episode 50 - Reward: -1686.24 - Alpha: 0.20000 - Steps: 10001
+Episode 60 - Reward: -1678.85 - Alpha: 0.15605 - Steps: 12001
+Episode 70 - Reward: -1006.66 - Alpha: 0.13371 - Steps: 14001
+Episode 80 - Reward: -1332.19 - Alpha: 0.13442 - Steps: 16001
+Episode 90 - Reward: -388.72 - Alpha: 0.14699 - Steps: 18001
+Episode 100 - Reward: -10.17 - Alpha: 0.16772 - Steps: 20001
+Episode 110 - Reward: -128.86 - Alpha: 0.18061 - Steps: 22001
+Episode 120 - Reward: -125.76 - Alpha: 0.19204 - Steps: 24001
+Episode 130 - Reward: -0.94 - Alpha: 0.21829 - Steps: 26001
+Episode 140 - Reward: -123.74 - Alpha: 0.22646 - Steps: 28001
+Episode 150 - Reward: -1.83 - Alpha: 0.22877 - Steps: 30001
+Episode 160 - Reward: -238.85 - Alpha: 0.21748 - Steps: 32001
+Episode 170 - Reward: -379.24 - Alpha: 0.21141 - Steps: 34001
+Episode 180 - Reward: -118.66 - Alpha: 0.20599 - Steps: 36001
+Episode 190 - Reward: -2.10 - Alpha: 0.20310 - Steps: 38001
+Episode 200 - Reward: -1515.87 - Alpha: 0.20281 - Steps: 40001
+Episode 210 - Reward: -119.36 - Alpha: 0.19493 - Steps: 42001
+Episode 220 - Reward: -121.04 - Alpha: 0.18266 - Steps: 44001
+Episode 230 - Reward: -322.90 - Alpha: 0.17008 - Steps: 46001
+Episode 240 - Reward: -224.82 - Alpha: 0.16988 - Steps: 48001
+Episode 250 - Reward: -220.51 - Alpha: 0.17583 - Steps: 50001
+Episode 260 - Reward: -126.34 - Alpha: 0.20822 - Steps: 52001
+Episode 270 - Reward: -127.51 - Alpha: 0.23718 - Steps: 54001
+Episode 280 - Reward: -118.85 - Alpha: 0.22000 - Steps: 56001
+Episode 290 - Reward: -123.30 - Alpha: 0.20645 - Steps: 58001
+Episode 300 - Reward: -2.60 - Alpha: 0.19751 - Steps: 60001
+Episode 310 - Reward: -253.83 - Alpha: 0.18041 - Steps: 62001
+Episode 320 - Reward: -115.14 - Alpha: 0.17012 - Steps: 64001
+Episode 330 - Reward: -122.55 - Alpha: 0.15913 - Steps: 66001
+Episode 340 - Reward: -123.82 - Alpha: 0.14570 - Steps: 68001
+Episode 350 - Reward: -249.76 - Alpha: 0.13991 - Steps: 70001
+Episode 360 - Reward: -118.22 - Alpha: 0.13255 - Steps: 72001
+Episode 370 - Reward: -3.55 - Alpha: 0.12311 - Steps: 74001
+Episode 380 - Reward: -120.99 - Alpha: 0.11398 - Steps: 76001
+Episode 390 - Reward: -4.36 - Alpha: 0.10596 - Steps: 78001
+Episode 400 - Reward: -125.30 - Alpha: 0.09488 - Steps: 80001
+Training time: 16m 32s
+No artists with labels found to put in legend.  Note that artists whose label start with an underscore are ignored when legend() is called with no argument.
+No artists with labels found to put in legend.  Note that artists whose label start with an underscore are ignored when legend() is called with no argument.
+No artists with labels found to put in legend.  Note that artists whose label start with an underscore are ignored when legend() is called with no argument.
+Reward over 25 episodes: -126.69 ± 0.25
+Total Reward of Policy Evaluation: -229.51
+Loaded model with reward: -0.94 and alpha: 0.21829
+Loaded best agent checkpoint.
+Total Reward of Policy Evaluation: -260.21

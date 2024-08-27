@@ -1,0 +1,57 @@
+SAC Agent Configuration:
+hidden_units: [256, 256]
+conv_layers: None
+log_std_interval: [-20, 2]
+gamma: 0.99
+load_best: False
+replay_buffer_size: 200000
+batch_size: 256
+init_temperature: 0.2
+actor_lr: 0.0003
+critic_lr: 0.003
+temperature_lr: 0.0003
+actor_update_freq: 2
+critic_target_update_freq: 2
+tau: 0.005
+
+Train Configuration:
+gradient_steps: 1
+max_episodes: 400
+warmup_steps: 15000
+print_interval: 20
+checkpoint_interval: 50
+test_episodes: 25
+save_replay_buffer: False
+
+Environment Seed: 42
+
+Starting SAC Training
+
+No pre-trained model found, training from scratch.
+
+Episode 20 - Reward: -107.12 - Alpha: 0.20000 - Steps: 9265
+Episode 40 - Reward: -98.46 - Alpha: 0.20000 - Steps: 13665
+Episode 60 - Reward: -60.49 - Alpha: 0.04518 - Steps: 27269
+Episode 80 - Reward: -98.12 - Alpha: 0.03327 - Steps: 30023
+Episode 100 - Reward: -95.11 - Alpha: 0.01969 - Steps: 34751
+Episode 120 - Reward: -95.53 - Alpha: 0.01646 - Steps: 36379
+Episode 140 - Reward: -95.87 - Alpha: 0.01374 - Steps: 38022
+Episode 160 - Reward: -95.76 - Alpha: 0.01128 - Steps: 39822
+Episode 180 - Reward: 222.28 - Alpha: 0.00417 - Steps: 48990
+Episode 200 - Reward: 118.82 - Alpha: 0.00089 - Steps: 63975
+Episode 220 - Reward: -89.60 - Alpha: 0.00033 - Steps: 73703
+Episode 240 - Reward: 300.16 - Alpha: 0.00010 - Steps: 85715
+Episode 260 - Reward: -8.26 - Alpha: 0.00004 - Steps: 96729
+Episode 280 - Reward: -1.14 - Alpha: 0.00002 - Steps: 107554
+Episode 300 - Reward: 301.26 - Alpha: 0.00002 - Steps: 117516
+Episode 320 - Reward: 298.97 - Alpha: 0.00003 - Steps: 126478
+Episode 340 - Reward: 1.96 - Alpha: 0.00007 - Steps: 139170
+Episode 360 - Reward: -51.23 - Alpha: 0.00031 - Steps: 152771
+Episode 380 - Reward: -111.11 - Alpha: 0.00040 - Steps: 154298
+Episode 400 - Reward: -111.02 - Alpha: 0.00049 - Steps: 162017
+Training time: 36m 41s
+Reward over 25 episodes: -27.24 ± 4.55
+Total Reward of Policy Evaluation: -32.40
+Loaded model with reward: 301.26 and alpha: 0.00002
+Loaded best agent checkpoint.
+Total Reward of Policy Evaluation: 105.55

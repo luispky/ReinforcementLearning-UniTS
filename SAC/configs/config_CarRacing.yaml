@@ -1,0 +1,38 @@
+experiment_number: '01'
+
+environment:
+  env_name: CarRacing-v2
+  hardcore: False
+  render_mode: rgb_array
+  seed:  # None for random seed, makes the experiment non-deterministic
+  image_processing: True
+  image_size: 84 
+  stack_frames: 4
+
+agent:
+  hidden_units: [256, 256]
+  conv_layers:
+    - [16, 8, 4]
+    - [32, 4, 2]
+  log_std_interval: [-20, 2]
+  gamma: 0.99
+  load_best: False
+  replay_buffer_size: 200
+  batch_size: 100
+  
+  init_temperature: 0.2
+  actor_lr: 0.0003
+  critic_lr: 0.003
+  temperature_lr: 0.0003
+  actor_update_freq: 2
+  critic_target_update_freq: 2
+  tau: 0.005
+
+train: 
+  gradient_steps: 1
+  max_episodes: 600
+  warmup_steps: 15000
+  print_interval: 10
+  checkpoint_interval: 20
+  test_episodes: 25
+  save_replay_buffer: False

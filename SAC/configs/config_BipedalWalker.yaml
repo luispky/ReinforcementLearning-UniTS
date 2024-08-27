@@ -1,0 +1,36 @@
+experiment_number: '02'
+
+environment:
+  env_name: BipedalWalker-v3
+  hardcore: True
+  render_mode: rgb_array
+  seed: 42 # Empty for random seed, makes the experiment "non-deterministic"
+  image_processing: False
+  image_size: 
+  stack_frames:
+
+agent:
+  hidden_units: [256, 256]
+  conv_layers:
+  log_std_interval: [-20, 2]
+  gamma: 0.99
+  load_best: False
+  replay_buffer_size: 200000
+  batch_size: 256
+  
+  init_temperature: 0.2
+  actor_lr: 0.0003
+  critic_lr: 0.0003
+  temperature_lr: 0.0003
+  actor_update_freq: 1
+  critic_target_update_freq: 1
+  tau: 0.005
+
+train: 
+  gradient_steps: 1
+  max_episodes: 1000
+  warmup_steps: 15000
+  print_interval: 20
+  checkpoint_interval: 50
+  test_episodes: 25
+  save_replay_buffer: False

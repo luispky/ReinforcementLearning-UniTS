@@ -1,0 +1,35 @@
+experiment_number: '01'
+
+environment:
+  env_name: 'HalfCheetah-v4'
+  hardcore: False
+  render_mode: rgb_array
+  seed:  # Empty for random seed, makes the experiment "non-deterministic"
+  image_processing: False
+  image_size: 
+  stack_frames:
+
+agent:
+  hidden_units: [400, 300]
+  conv_layers:
+  gamma: 0.99
+  load_best: False
+  replay_buffer_size: 200000
+  batch_size: 100
+  exploration_noise: 0.1
+  policy_noise: 0.2
+  noise_clip: 0.5
+  policy_delay: 2
+
+  actor_lr: 0.001
+  critic_lr: 0.001
+  tau: 0.005
+
+train: 
+  gradient_steps: 1
+  max_episodes: 3000
+  warmup_steps: 15000
+  print_interval: 25
+  checkpoint_interval: 50
+  test_episodes: 25
+  save_replay_buffer: False

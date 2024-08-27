@@ -1,0 +1,56 @@
+TD3 Agent Configuration:
+hidden_units: [400, 300]
+conv_layers: None
+gamma: 0.99
+load_best: False
+replay_buffer_size: 200000
+batch_size: 100
+exploration_noise: 0.1
+policy_noise: 0.2
+noise_clip: 0.5
+policy_delay: 2
+actor_lr: 0.001
+critic_lr: 0.001
+tau: 0.005
+
+Train Configuration:
+gradient_steps: 1
+max_episodes: 400
+warmup_steps: 15000
+print_interval: 20
+checkpoint_interval: 50
+test_episodes: 25
+save_replay_buffer: False
+
+Environment Seed: 42
+
+Starting TD3 Training
+
+No pre-trained model found, training from scratch.
+
+Episode 20 - Reward: -95.14 - Steps: 2008
+Episode 40 - Reward: -93.27 - Steps: 8503
+Episode 60 - Reward: -29.91 - Steps: 13433
+Episode 80 - Reward: -131.61 - Steps: 18495
+Episode 100 - Reward: -164.77 - Steps: 23956
+Episode 120 - Reward: -97.40 - Steps: 28706
+Episode 140 - Reward: -97.81 - Steps: 30074
+Episode 160 - Reward: -93.18 - Steps: 31499
+Episode 180 - Reward: -96.97 - Steps: 33150
+Episode 200 - Reward: -95.26 - Steps: 35045
+Episode 220 - Reward: -90.38 - Steps: 37691
+Episode 240 - Reward: -90.21 - Steps: 39369
+Episode 260 - Reward: -71.01 - Steps: 41271
+Episode 280 - Reward: -87.13 - Steps: 43632
+Episode 300 - Reward: 276.39 - Steps: 58944
+Episode 320 - Reward: 4.90 - Steps: 72940
+Episode 340 - Reward: -71.29 - Steps: 83112
+Episode 360 - Reward: -29.33 - Steps: 90104
+Episode 380 - Reward: 52.34 - Steps: 96493
+Episode 400 - Reward: 11.19 - Steps: 103051
+Training time: 14m 37s
+Reward over 25 episodes: 237.70 ± 92.98
+Total Reward of Policy Evaluation: 295.71
+Loaded model with reward: 276.39
+Loaded best agent checkpoint.
+Total Reward of Policy Evaluation: -114.46
