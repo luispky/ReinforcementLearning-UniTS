@@ -5,6 +5,8 @@ from collections import deque
 import imageio
 import numpy as np
 import matplotlib.pyplot as plt
+import seaborn as sns
+from matplotlib.ticker import MaxNLocator
 import torch
 import yaml
 import numpy as np
@@ -61,6 +63,9 @@ def running_std(x, window_size):
         std.append(np.std(x[i:i+window_size]))
     return np.array(std)
 
+# Use Seaborn's style
+sns.set(style="whitegrid")
+
 def plot_results(rewards, losses, window_size=8, save_fig=False, path='results', name='results.png', algorithm='SAC'):
     
     # Dynamically determine the base directory based on script location
@@ -86,33 +91,41 @@ def plot_results(rewards, losses, window_size=8, save_fig=False, path='results',
     # Plotting
     fig, ax = plt.subplots(1, size, figsize=(5*size, 7))
 
-    # Plot rewards
-    # ax[0].plot(rewards, color='blue', alpha=0.3)
-    ax[0].plot(rewards_rm, color='blue', label='Average Return')
-    ax[0].fill_between(range(len(rewards_rm)), rewards_rm - rewards_std, rewards_rm + rewards_std, color='blue', alpha=0.3)
-    ax[0].set_title('Rewards')
-    ax[0].set_xlabel('Episodes')
-    ax[0].set_ylabel('Reward')
-    ax[0].legend(loc='lower left')
-    
-    # Plot critic loss
-    ax[1].plot(critic_loss, color='red')
-    ax[1].set_title('Critic Loss')
-    ax[1].set_xlabel('Steps')
-    ax[1].set_ylabel('Loss')
+    # Apply scientific notation
+    for a in ax:
+        a.ticklabel_format(style='scientific', axis='both', scilimits=(0,0))
+        a.xaxis.set_major_locator(MaxNLocator(nbins=5))
+        a.yaxis.set_major_locator(MaxNLocator(nbins=5))
+        a.grid(True, which='both', linestyle='--', linewidth=0.6)  # Add gridlines
+        a.tick_params(axis='both', which='major', labelsize=12)  # Adjust tick label size
 
-    # Plot actor loss
-    ax[2].plot(actor_loss, color='red')
-    ax[2].set_title('Actor Loss')
-    ax[2].set_xlabel('Steps')
-    ax[2].set_ylabel('Loss')
+
+    # Plot rewards using Seaborn
+    sns.lineplot(x=np.arange(len(rewards_rm)), y=rewards_rm, ax=ax[0], color='blue', label='Average Return', linewidth=2)
+    ax[0].fill_between(np.arange(len(rewards_rm)), rewards_rm - rewards_std, rewards_rm + rewards_std, color='blue', alpha=0.3)
+    ax[0].set_title('Rewards', fontsize=14)
+    ax[0].set_xlabel('Episodes', fontsize=12)
+    ax[0].set_ylabel('Reward', fontsize=12)
+    ax[0].legend(loc='upper left', fontsize=12)
     
-    if size == 4: 
-        # Plot temperature loss
-        ax[3].plot(temperature_loss, color='red')
-        ax[3].set_title('Temperature Loss')
-        ax[3].set_xlabel('Steps')
-        ax[3].set_ylabel('Loss')
+    # Plot critic loss using Seaborn
+    sns.lineplot(x=np.arange(len(critic_loss)), y=critic_loss, ax=ax[1], color='red', linewidth=2)
+    ax[1].set_title('Critic Loss', fontsize=14)
+    ax[1].set_xlabel('Steps', fontsize=12)
+    ax[1].set_ylabel('Loss', fontsize=12)
+
+    # Plot actor loss using Seaborn
+    sns.lineplot(x=np.arange(len(actor_loss)), y=actor_loss, ax=ax[2], color='red', linewidth=2)
+    ax[2].set_title('Actor Loss', fontsize=14)
+    ax[2].set_xlabel('Steps', fontsize=12)
+    ax[2].set_ylabel('Loss', fontsize=12)
+    
+    # Plot actor loss using Seaborn
+    if temperature_loss is not None:
+        sns.lineplot(x=np.arange(len(temperature_loss)), y=temperature_loss, ax=ax[3], color='red', linewidth=2)
+        ax[3].set_title('Temperature Loss', fontsize=14)
+        ax[3].set_xlabel('Steps', fontsize=12)
+        ax[3].set_ylabel('Loss', fontsize=12)
 
     plt.tight_layout()
     
