@@ -229,7 +229,7 @@ class SACAgent:
             self._update_target_network(self.double_critic_target, self.double_critic)
             
         self.update_counter += 1
-        
+    
     def train(self, env, start_episode, max_episodes, warmup_steps, gradient_steps,
               print_interval, checkpoint_interval, experiment_number,
               save_replay_buffer=False, checkpoint_training_data=False):
