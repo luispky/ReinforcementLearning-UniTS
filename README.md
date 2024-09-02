@@ -26,6 +26,11 @@ This project implements the Soft Actor-Critic and Twin Delayed Deep Deterministi
     ├── agent.py
     └── configs
 ```
+* The `env.yaml` file allows to create a new conda environment with the same packages utilized in this project, paramount to execute this code. To create the environment execute the command:
+
+```linux
+conda env create -f env.yaml
+```
 
 * The SAC and TD3 directories contain the implementation of the algorithms (`agent.py`) and the parameters and hyperparameters utilized are setupped in the `config` subdirectory for each environment.
 * The `main.py` contains the code to run the `SAC` and `TD3` algorithms. 
