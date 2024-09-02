@@ -1,10 +1,10 @@
-experiment_number: '09'
+experiment_number: '02'
 
 environment:
   env_name: Pendulum-v1
   hardcore: False
   render_mode: rgb_array
-  seed:   # Empty for random seed, makes the experiment "non-deterministic"
+  seed: 42  # Empty for random seed, makes the experiment "non-deterministic"
   image_processing: False
   image_size: 
   stack_frames:
@@ -15,7 +15,7 @@ agent:
   gamma: 0.99
   load_best: False
   replay_buffer_size: 100000
-  batch_size: 64
+  batch_size: 100
   exploration_noise: 0.1
   policy_noise: 0.2
   noise_clip: 0.5
@@ -27,9 +27,10 @@ agent:
 
 train: 
   gradient_steps: 1
-  max_episodes: 400
-  warmup_steps: 10000
+  max_episodes: 800
+  warmup_steps: 5000
   print_interval: 10
   checkpoint_interval: 50
   test_episodes: 25
   save_replay_buffer: False
+  evaluation_interval: 10 

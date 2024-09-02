@@ -107,7 +107,7 @@ def run(config, algorithm):
     if start_episode is not None and start_episode < max_episodes:
         start_time = time.time()
 
-        rewards, losses = agent.train(
+        rewards, losses, eval_rewards = agent.train(
                                     env=env,
                                     start_episode=start_episode,
                                     max_episodes=max_episodes,
@@ -116,16 +116,18 @@ def run(config, algorithm):
                                     print_interval=config['train']['print_interval'],
                                     checkpoint_interval=config['train']['checkpoint_interval'],
                                     experiment_number=experiment_number,
+                                    evaluation_interval=config['train']['evaluation_interval'],
                                 )
 
         end_time = time.time()
         logging.info(f"Training time: {format_time(end_time - start_time)}")
 
         # Save and plot results
-        plot_results(rewards, losses, save_fig=True, name=experiment_number, path=results_dir, algorithm=algorithm)
+        plot_results(rewards, losses, eval_rewards, evaluation_interval=config['train']['evaluation_interval'],
+                     save_fig=True, name=experiment_number, path=results_dir, algorithm=algorithm)
     
     # Test and visualize policy
-    test_policy(agent=agent, env=env, num_episodes=config['train']['test_episodes'])
+    agent.evaluate(env=env, episodes=config['train']['test_episodes'], verbose=True)
     policy_visualization(agent=agent, env=env, save_gif=True, path=results_dir, name=f"{experiment_number}_{'best' if load_best else 'last'}", algorithm=algorithm)
 
     if not load_best:

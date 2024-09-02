@@ -57,16 +57,12 @@ def running_mean(x, window_size):
     cumsum = np.cumsum(np.insert(x, 0, 0)) 
     return (cumsum[window_size:] - cumsum[:-window_size]) / float(window_size)
 
-def running_std(x, window_size):
-    std = []
-    for i in range(len(x) - window_size + 1):
-        std.append(np.std(x[i:i+window_size]))
-    return np.array(std)
+def cumulative_mean(x):
+    return np.cumsum(x) / np.arange(1, len(x) + 1)
 
-# Use Seaborn's style
 sns.set(style="whitegrid")
 
-def plot_results(rewards, losses, window_size=8, save_fig=False, path='results', name='results.png', algorithm='SAC'):
+def plot_results(rewards, losses, eval_rewards, evaluation_interval=10, window_size=15, save_fig=False, path='results', name='results.png', algorithm='SAC'):
     
     # Dynamically determine the base directory based on script location
     parent_directory = Path(__file__).resolve().parent.parent
@@ -74,58 +70,76 @@ def plot_results(rewards, losses, window_size=8, save_fig=False, path='results',
     os.makedirs(path, exist_ok=True)
     
     rewards = np.array(rewards)
+    eval_rewards = np.array(eval_rewards)
     critic_loss = np.array(losses['critic'])
     actor_loss = np.array(losses['actor'])
     size = 0
     temperature_loss = None
     if losses.get('temperature') is not None:
         temperature_loss = np.array(losses['temperature'])
-        size = 4
+        size = 5
     else:
-        size = 3
+        size = 4
     
-    # Calculate smoothed data
     rewards_rm = running_mean(rewards, window_size)
-    rewards_std = running_std(rewards, window_size)
+    rewards_cm = cumulative_mean(rewards)
     
-    # Plotting
+    eval_rewards_rm = running_mean(eval_rewards, window_size//2)
+    eval_rewards_cm = cumulative_mean(eval_rewards//2)
+    
+    critic_loss_rm = running_mean(critic_loss, window_size)
+    critic_loss_cm = cumulative_mean(critic_loss)
+    
+    actor_loss_rm = running_mean(actor_loss, window_size)
+    actor_loss_cm = cumulative_mean(actor_loss)
+    
+    temperature_loss_rm = None
+    temperature_loss_cm = None
+    if temperature_loss is not None:
+        temperature_loss_rm = running_mean(temperature_loss, window_size)
+        temperature_loss_cm = cumulative_mean(temperature_loss)
+    
     fig, ax = plt.subplots(1, size, figsize=(5*size, 7))
 
-    # Apply scientific notation
     for a in ax:
         a.ticklabel_format(style='scientific', axis='both', scilimits=(0,0))
         a.xaxis.set_major_locator(MaxNLocator(nbins=5))
         a.yaxis.set_major_locator(MaxNLocator(nbins=5))
-        a.grid(True, which='both', linestyle='--', linewidth=0.6)  # Add gridlines
-        a.tick_params(axis='both', which='major', labelsize=12)  # Adjust tick label size
+        a.grid(True, which='both', linestyle='--', linewidth=0.6) 
+        a.tick_params(axis='both', which='major', labelsize=12)  
 
 
-    # Plot rewards using Seaborn
-    sns.lineplot(x=np.arange(len(rewards_rm)), y=rewards_rm, ax=ax[0], color='blue', label='Average Return', linewidth=2)
-    ax[0].fill_between(np.arange(len(rewards_rm)), rewards_rm - rewards_std, rewards_rm + rewards_std, color='blue', alpha=0.3)
-    ax[0].set_title('Rewards', fontsize=14)
+    sns.lineplot(x=np.arange(len(rewards_rm)), y=rewards_rm, ax=ax[0], color='blue', linewidth=2, alpha=0.7)
+    sns.lineplot(x=np.arange(len(rewards_cm)), y=rewards_cm, ax=ax[0], color='red', linewidth=2)
+    ax[0].set_title('Training Rewards', fontsize=14)
     ax[0].set_xlabel('Episodes', fontsize=12)
     ax[0].set_ylabel('Reward', fontsize=12)
-    ax[0].legend(loc='upper left', fontsize=12)
     
-    # Plot critic loss using Seaborn
-    sns.lineplot(x=np.arange(len(critic_loss)), y=critic_loss, ax=ax[1], color='red', linewidth=2)
-    ax[1].set_title('Critic Loss', fontsize=14)
-    ax[1].set_xlabel('Steps', fontsize=12)
-    ax[1].set_ylabel('Loss', fontsize=12)
-
-    # Plot actor loss using Seaborn
-    sns.lineplot(x=np.arange(len(actor_loss)), y=actor_loss, ax=ax[2], color='red', linewidth=2)
-    ax[2].set_title('Actor Loss', fontsize=14)
+    sns.lineplot(x=evaluation_interval*np.arange(len(eval_rewards_rm)), y=eval_rewards_rm, ax=ax[1], color='blue', linewidth=2, alpha=0.7)
+    sns.lineplot(x=evaluation_interval*np.arange(len(eval_rewards_cm)), y=eval_rewards_cm, ax=ax[1], color='red', linewidth=2)
+    ax[1].set_title('Evaluation Rewards', fontsize=14)
+    ax[1].set_xlabel('Episodes', fontsize=12)
+    ax[1].set_ylabel('Reward', fontsize=12)
+    
+    sns.lineplot(x=np.arange(len(critic_loss_rm)), y=critic_loss_rm, ax=ax[2], color='blue', label='Running Mean', linewidth=2, alpha=0.7)
+    sns.lineplot(x=np.arange(len(critic_loss_cm)), y=critic_loss_cm, ax=ax[2], color='red', label='Cumulative Mean', linewidth=2)
+    ax[2].set_title('Critic Loss', fontsize=14)
     ax[2].set_xlabel('Steps', fontsize=12)
     ax[2].set_ylabel('Loss', fontsize=12)
+    ax[2].legend(loc='upper right', fontsize=12)
+
+    sns.lineplot(x=np.arange(len(actor_loss_rm)), y=actor_loss_rm, ax=ax[3], color='blue', linewidth=2, alpha=0.7)
+    sns.lineplot(x=np.arange(len(actor_loss_cm)), y=actor_loss_cm, ax=ax[3], color='red', linewidth=2)
+    ax[3].set_title('Actor Loss', fontsize=14)
+    ax[3].set_xlabel('Steps', fontsize=12)
+    ax[3].set_ylabel('Loss', fontsize=12)
     
-    # Plot actor loss using Seaborn
-    if temperature_loss is not None:
-        sns.lineplot(x=np.arange(len(temperature_loss)), y=temperature_loss, ax=ax[3], color='red', linewidth=2)
-        ax[3].set_title('Temperature Loss', fontsize=14)
-        ax[3].set_xlabel('Steps', fontsize=12)
-        ax[3].set_ylabel('Loss', fontsize=12)
+    if temperature_loss_rm is not None and temperature_loss_cm is not None:
+        sns.lineplot(x=np.arange(len(temperature_loss_rm)), y=temperature_loss_rm, ax=ax[4], color='blue', linewidth=2, alpha=0.7)
+        sns.lineplot(x=np.arange(len(temperature_loss_cm)), y=temperature_loss_cm, ax=ax[4], color='red', linewidth=2)
+        ax[4].set_title('Temperature Loss', fontsize=14)
+        ax[4].set_xlabel('Steps', fontsize=12)
+        ax[4].set_ylabel('Loss', fontsize=12)
 
     plt.tight_layout()
     

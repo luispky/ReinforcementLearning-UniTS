@@ -1,0 +1,237 @@
+TD3 Agent Configuration:
+hidden_units: [400, 300]
+conv_layers: None
+gamma: 0.99
+load_best: False
+replay_buffer_size: 200000
+batch_size: 100
+exploration_noise: 0.1
+policy_noise: 0.2
+noise_clip: 0.5
+policy_delay: 2
+actor_lr: 0.001
+critic_lr: 0.001
+tau: 0.005
+
+Train Configuration:
+gradient_steps: 1
+max_episodes: 5000
+warmup_steps: 15000
+print_interval: 25
+checkpoint_interval: 50
+test_episodes: 25
+save_replay_buffer: False
+evaluation_interval: 10
+
+Environment Seed: None
+
+Starting TD3 Training
+
+No pre-trained model found, training from scratch.
+
+Episode 25 - Reward: 693.18 - Steps: 23259
+Episode 50 - Reward: 855.29 - Steps: 46033
+Episode 75 - Reward: 887.56 - Steps: 66907
+Episode 100 - Reward: 1047.30 - Steps: 89368
+Episode 125 - Reward: 1127.61 - Steps: 113434
+Episode 150 - Reward: -402.93 - Steps: 137445
+Episode 175 - Reward: 1307.49 - Steps: 162445
+Episode 200 - Reward: 1365.79 - Steps: 186252
+Episode 225 - Reward: 1383.27 - Steps: 211252
+Episode 250 - Reward: 1457.58 - Steps: 235187
+Episode 275 - Reward: 1576.57 - Steps: 258551
+Episode 300 - Reward: 1633.79 - Steps: 281100
+Episode 325 - Reward: 1730.51 - Steps: 304158
+Episode 350 - Reward: 1240.39 - Steps: 327539
+Episode 375 - Reward: 535.22 - Steps: 350346
+Episode 400 - Reward: 1807.56 - Steps: 372727
+Episode 425 - Reward: 2080.11 - Steps: 396423
+Episode 450 - Reward: 2013.07 - Steps: 421093
+Episode 475 - Reward: 2064.59 - Steps: 445037
+Episode 500 - Reward: 2252.61 - Steps: 466657
+Episode 525 - Reward: 977.28 - Steps: 488856
+Episode 550 - Reward: 2185.56 - Steps: 513341
+Episode 575 - Reward: -375.32 - Steps: 536067
+Episode 600 - Reward: 18.93 - Steps: 552084
+Episode 625 - Reward: 54.45 - Steps: 573670
+Episode 650 - Reward: 2015.47 - Steps: 597001
+Episode 675 - Reward: 2085.71 - Steps: 621904
+Episode 700 - Reward: 2186.29 - Steps: 645230
+Episode 725 - Reward: 2477.55 - Steps: 668741
+Episode 750 - Reward: 29.57 - Steps: 693578
+Episode 775 - Reward: 4.47 - Steps: 714367
+Episode 800 - Reward: 2381.85 - Steps: 738436
+Episode 825 - Reward: -121.43 - Steps: 761696
+Episode 850 - Reward: 2300.67 - Steps: 785684
+Episode 875 - Reward: 2338.70 - Steps: 810649
+Episode 900 - Reward: 2257.13 - Steps: 832536
+Episode 925 - Reward: 2467.91 - Steps: 856962
+Episode 950 - Reward: 2341.06 - Steps: 879945
+Episode 975 - Reward: 2551.92 - Steps: 902697
+Episode 1000 - Reward: 2611.73 - Steps: 925167
+Episode 1025 - Reward: 2681.92 - Steps: 950167
+Episode 1050 - Reward: 2557.25 - Steps: 973627
+Episode 1075 - Reward: 2609.16 - Steps: 997592
+Episode 1100 - Reward: -2284.77 - Steps: 1021610
+Episode 1125 - Reward: 36.78 - Steps: 1044812
+Episode 1150 - Reward: 2531.29 - Steps: 1067788
+Episode 1175 - Reward: 2468.80 - Steps: 1092788
+Episode 1200 - Reward: 1578.39 - Steps: 1115498
+Episode 1225 - Reward: 1411.94 - Steps: 1139342
+Episode 1250 - Reward: 2547.84 - Steps: 1162898
+Episode 1275 - Reward: 2471.63 - Steps: 1186899
+Episode 1300 - Reward: 408.57 - Steps: 1210270
+Episode 1325 - Reward: 652.46 - Steps: 1231051
+Episode 1350 - Reward: 2547.97 - Steps: 1254313
+Episode 1375 - Reward: 2564.04 - Steps: 1277373
+Episode 1400 - Reward: 2585.05 - Steps: 1301535
+Episode 1425 - Reward: 2431.74 - Steps: 1323397
+Episode 1450 - Reward: 2755.53 - Steps: 1347156
+Episode 1475 - Reward: 2577.39 - Steps: 1370308
+Episode 1500 - Reward: 1187.64 - Steps: 1393827
+Episode 1525 - Reward: 2541.63 - Steps: 1417678
+Episode 1550 - Reward: 2909.31 - Steps: 1440681
+Episode 1575 - Reward: 2770.93 - Steps: 1462939
+Episode 1600 - Reward: -2313.80 - Steps: 1485405
+Episode 1625 - Reward: 2777.55 - Steps: 1508745
+Episode 1650 - Reward: 2652.48 - Steps: 1532479
+Episode 1675 - Reward: 2828.64 - Steps: 1556547
+Episode 1700 - Reward: 278.46 - Steps: 1575592
+Episode 1725 - Reward: 2725.78 - Steps: 1599277
+Episode 1750 - Reward: 2553.82 - Steps: 1621360
+Episode 1775 - Reward: 2838.52 - Steps: 1643304
+Episode 1800 - Reward: 2735.95 - Steps: 1664020
+Episode 1825 - Reward: 2811.26 - Steps: 1685854
+Episode 1850 - Reward: 2778.64 - Steps: 1708500
+Episode 1875 - Reward: 2793.53 - Steps: 1731751
+Episode 1900 - Reward: 2732.38 - Steps: 1755654
+Episode 1925 - Reward: 2698.35 - Steps: 1779607
+Episode 1950 - Reward: 2683.21 - Steps: 1804171
+Episode 1975 - Reward: 2963.08 - Steps: 1826362
+Episode 2000 - Reward: 2068.34 - Steps: 1850091
+Episode 2025 - Reward: 2727.58 - Steps: 1872609
+Episode 2050 - Reward: 2696.62 - Steps: 1895346
+Episode 2075 - Reward: 2687.83 - Steps: 1919197
+Episode 2100 - Reward: 2980.90 - Steps: 1939448
+Episode 2125 - Reward: 1063.54 - Steps: 1961437
+Episode 2150 - Reward: 2838.38 - Steps: 1984956
+Episode 2175 - Reward: 2841.66 - Steps: 2008117
+Episode 2200 - Reward: 2816.42 - Steps: 2032480
+Episode 2225 - Reward: 2826.18 - Steps: 2055265
+Episode 2250 - Reward: 3106.88 - Steps: 2079053
+Episode 2275 - Reward: 2838.84 - Steps: 2101403
+Episode 2300 - Reward: 2898.12 - Steps: 2125022
+Episode 2325 - Reward: 2970.65 - Steps: 2149676
+Episode 2350 - Reward: 2795.47 - Steps: 2174676
+Episode 2375 - Reward: 2911.66 - Steps: 2197683
+Episode 2400 - Reward: 2619.43 - Steps: 2220052
+Episode 2425 - Reward: -448.66 - Steps: 2243737
+Episode 2450 - Reward: 3046.09 - Steps: 2267048
+Episode 2475 - Reward: 2783.45 - Steps: 2290599
+Episode 2500 - Reward: 2781.63 - Steps: 2313082
+Episode 2525 - Reward: 2582.64 - Steps: 2336034
+Episode 2550 - Reward: 868.97 - Steps: 2358995
+Episode 2575 - Reward: 625.75 - Steps: 2381705
+Episode 2600 - Reward: 2925.85 - Steps: 2402284
+Episode 2625 - Reward: 2524.45 - Steps: 2424904
+Episode 2650 - Reward: 2896.64 - Steps: 2448495
+Episode 2675 - Reward: 2944.87 - Steps: 2470128
+Episode 2700 - Reward: 2874.01 - Steps: 2491458
+Episode 2725 - Reward: 2926.26 - Steps: 2513637
+Episode 2750 - Reward: 2614.12 - Steps: 2534531
+Episode 2775 - Reward: 2770.06 - Steps: 2556694
+Episode 2800 - Reward: 2573.32 - Steps: 2578746
+Episode 2825 - Reward: 2762.26 - Steps: 2603087
+Episode 2850 - Reward: 2064.63 - Steps: 2625037
+Episode 2875 - Reward: 2788.34 - Steps: 2648955
+Episode 2900 - Reward: 2640.84 - Steps: 2671180
+Episode 2925 - Reward: 3008.64 - Steps: 2692304
+Episode 2950 - Reward: 2682.87 - Steps: 2715121
+Episode 2975 - Reward: 2673.79 - Steps: 2737117
+Episode 3000 - Reward: 2817.80 - Steps: 2759193
+Episode 3025 - Reward: 2621.93 - Steps: 2779614
+Episode 3050 - Reward: 2672.84 - Steps: 2803221
+Episode 3075 - Reward: 2138.42 - Steps: 2825964
+Episode 3100 - Reward: 2734.64 - Steps: 2850193
+Episode 3125 - Reward: 1618.34 - Steps: 2871343
+Episode 3150 - Reward: 3000.34 - Steps: 2894984
+Episode 3175 - Reward: 2784.16 - Steps: 2918219
+Episode 3200 - Reward: 2805.58 - Steps: 2940194
+Episode 3225 - Reward: 3154.59 - Steps: 2964363
+Episode 3250 - Reward: 2852.68 - Steps: 2987580
+Episode 3275 - Reward: 3036.14 - Steps: 3007507
+Episode 3300 - Reward: 2968.12 - Steps: 3028538
+Episode 3325 - Reward: 3044.33 - Steps: 3049721
+Episode 3350 - Reward: 2974.17 - Steps: 3071417
+Episode 3375 - Reward: 3115.81 - Steps: 3095444
+Episode 3400 - Reward: 2834.70 - Steps: 3117925
+Episode 3425 - Reward: -1312.50 - Steps: 3137903
+Episode 3450 - Reward: 1002.95 - Steps: 3154962
+Episode 3475 - Reward: 2823.39 - Steps: 3177095
+Episode 3500 - Reward: 2729.39 - Steps: 3198367
+Episode 3525 - Reward: 3003.67 - Steps: 3221407
+Episode 3550 - Reward: 2025.27 - Steps: 3240707
+Episode 3575 - Reward: 3061.95 - Steps: 3263890
+Episode 3600 - Reward: 1396.26 - Steps: 3284602
+Episode 3625 - Reward: 2815.20 - Steps: 3303569
+Episode 3650 - Reward: 2819.06 - Steps: 3320417
+Episode 3675 - Reward: 2874.57 - Steps: 3341156
+Episode 3700 - Reward: 3078.46 - Steps: 3361487
+Episode 3725 - Reward: 3051.20 - Steps: 3384209
+Episode 3750 - Reward: 3079.41 - Steps: 3405556
+Episode 3775 - Reward: 2684.83 - Steps: 3426977
+Episode 3800 - Reward: 2880.16 - Steps: 3451165
+Episode 3825 - Reward: 2782.45 - Steps: 3474095
+Episode 3850 - Reward: 2858.93 - Steps: 3495687
+Episode 3875 - Reward: 2780.93 - Steps: 3519319
+Episode 3900 - Reward: 3042.05 - Steps: 3543342
+Episode 3925 - Reward: 2801.24 - Steps: 3562883
+Episode 3950 - Reward: 3013.28 - Steps: 3581676
+Episode 3975 - Reward: 2982.02 - Steps: 3604926
+Episode 4000 - Reward: 2927.86 - Steps: 3626250
+Episode 4025 - Reward: 2728.12 - Steps: 3648683
+Episode 4050 - Reward: 2630.28 - Steps: 3669712
+Episode 4075 - Reward: 2896.58 - Steps: 3693001
+Episode 4100 - Reward: 2748.44 - Steps: 3714338
+Episode 4125 - Reward: 2648.02 - Steps: 3735757
+Episode 4150 - Reward: 2840.50 - Steps: 3755996
+Episode 4175 - Reward: 3068.97 - Steps: 3778570
+Episode 4200 - Reward: 2745.22 - Steps: 3796470
+Episode 4225 - Reward: 223.43 - Steps: 3815993
+Episode 4250 - Reward: 1779.69 - Steps: 3838261
+Episode 4275 - Reward: 269.56 - Steps: 3854658
+Episode 4300 - Reward: 3164.95 - Steps: 3874600
+Episode 4325 - Reward: 2970.44 - Steps: 3896899
+Episode 4350 - Reward: 780.88 - Steps: 3917942
+Episode 4375 - Reward: -48.78 - Steps: 3939531
+Episode 4400 - Reward: 3021.21 - Steps: 3961109
+Episode 4425 - Reward: 2937.35 - Steps: 3985332
+Episode 4450 - Reward: 2877.35 - Steps: 4006792
+Episode 4475 - Reward: 3052.03 - Steps: 4030516
+Episode 4500 - Reward: 3053.09 - Steps: 4050850
+Episode 4525 - Reward: 761.04 - Steps: 4071072
+Episode 4550 - Reward: 2851.58 - Steps: 4090013
+Episode 4575 - Reward: 2855.52 - Steps: 4112662
+Episode 4600 - Reward: 3129.91 - Steps: 4135186
+Episode 4625 - Reward: 2897.43 - Steps: 4154051
+Episode 4650 - Reward: 3111.89 - Steps: 4176279
+Episode 4675 - Reward: 3104.36 - Steps: 4196998
+Episode 4700 - Reward: 3056.75 - Steps: 4216411
+Episode 4725 - Reward: 2942.34 - Steps: 4237212
+Episode 4750 - Reward: -679.59 - Steps: 4256218
+Episode 4775 - Reward: 3033.17 - Steps: 4278217
+Episode 4800 - Reward: 1588.08 - Steps: 4298934
+Episode 4825 - Reward: 3131.19 - Steps: 4323934
+Episode 4850 - Reward: 1644.23 - Steps: 4338731
+Episode 4875 - Reward: 1763.34 - Steps: 4355619
+Episode 4900 - Reward: 3128.77 - Steps: 4374001
+Episode 4925 - Reward: 312.36 - Steps: 4394998
+Episode 4950 - Reward: 3111.77 - Steps: 4411861
+Episode 4975 - Reward: 1028.35 - Steps: 4427946
+Episode 5000 - Reward: 1390.61 - Steps: 4447024
+Training time: 18h 9m 58s
+Reward over 25 episodes: 3094.85 ± 0.00
+Total Reward of Policy Evaluation: 3200.20
+Loaded model with reward: 3164.95
+Loaded best agent checkpoint.
+Total Reward of Policy Evaluation: 3348.11

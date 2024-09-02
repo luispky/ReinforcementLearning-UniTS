@@ -113,9 +113,11 @@ class TD3Agent:
         self.rewards_file = None
         self.losses_file = None
         self.replay_buffer_file = None
+        self.evaluation_rewards_file = None
         
         self.to_train_mode()
         self.update_counter = 0
+        self.steps = 0
 
     def to_train_mode(self):
         self.actor.train()
@@ -133,11 +135,13 @@ class TD3Agent:
             action += noise * np.random.randn(self.action_size)
         return np.clip(action, -1, 1) 
 
-    def save_training_data(self, rewards_memory, losses, save_replay_buffer=True):
+    def save_training_data(self, rewards_memory, losses, evaluation_rewards, save_replay_buffer=True):
         with open(str(self.rewards_file), 'wb') as f:
             pickle.dump(rewards_memory, f)
         with open(str(self.losses_file), 'wb') as f:
             pickle.dump(losses, f)
+        with open(str(self.evaluation_rewards_file), 'wb') as f:
+            pickle.dump(evaluation_rewards, f)
         
         if save_replay_buffer:
             with open(str(self.replay_buffer_file), 'wb') as f:
@@ -147,6 +151,7 @@ class TD3Agent:
         self.rewards_file = os.path.join(self.checkpoint_dir, f'{experiment_number}_rewards.pkl')
         self.losses_file = os.path.join(self.checkpoint_dir, f'{experiment_number}_losses.pkl')
         self.replay_buffer_file = os.path.join(self.checkpoint_dir, f'{experiment_number}_replay_buffer.pkl')
+        self.evaluation_rewards_file = os.path.join(self.checkpoint_dir, f'{experiment_number}_evaluation_rewards.pkl')
         
         if os.path.exists(self.rewards_file):
             with open(self.rewards_file, 'rb') as f:
@@ -161,7 +166,13 @@ class TD3Agent:
         if os.path.exists(self.replay_buffer_file):
             with open(self.replay_buffer_file, 'rb') as f:
                 self.replay_buffer = pickle.load(f)
-        return rewards_memory, losses
+        if os.path.exists(self.evaluation_rewards_file):
+            with open(self.evaluation_rewards_file, 'rb') as f:
+                evaluation_rewards = pickle.load(f)
+        else:
+            evaluation_rewards = []        
+        
+        return rewards_memory, losses, evaluation_rewards
 
     def _update_critic(self, states, actions, rewards, next_states, dones):
         with torch.no_grad():
@@ -208,19 +219,38 @@ class TD3Agent:
             self._update_target_network(self.double_critic_target, self.double_critic)
 
         self.update_counter += 1
-
+    
+    def evaluate(self, env, episodes=10, verbose=False):
+        rewards = []
+        seed = np.random.randint(0, 1000)
+        self.to_eval_mode()
+        with torch.no_grad():
+            for _ in range(episodes):
+                state, done = env.reset(seed)
+                episode_reward = 0
+                while not done:
+                    action = self.take_action(state.to(self.device))
+                    state, reward, done = env.step(action)
+                    episode_reward += reward
+                rewards.append(episode_reward)
+            avg_reward = np.mean(rewards)
+            std_reward = np.std(rewards)
+            if verbose:
+                logging.info(f"Reward over {episodes} episodes: {avg_reward:.2f} ± {std_reward:.2f}")
+            return avg_reward
+    
     def train(self, env, start_episode, max_episodes, warmup_steps, gradient_steps,
               print_interval, checkpoint_interval, experiment_number,
-              save_replay_buffer=False, checkpoint_training_data=False):
+              save_replay_buffer=False, checkpoint_training_data=False, 
+              evaluation_interval=10): #doubles the total number of episodes
         
-        rewards_memory, losses = self.load_training_data(experiment_number)
+        rewards_memory, losses, evaluation_rewards = self.load_training_data(experiment_number)
         
-        step = 0
         for episode in range(start_episode, max_episodes):
             state, done = env.reset()
             episode_reward = 0
             while not done:
-                step += 1
+                self.steps += 1
                 
                 self.to_eval_mode()
                 action = self.take_action(state.to(self.device), noise=self.exploration_noise)
@@ -232,28 +262,31 @@ class TD3Agent:
                 state = next_state
                 episode_reward += reward
 
-                if step > warmup_steps:
+                if self.steps and len(self.replay_buffer) > warmup_steps:
                     for _ in range(gradient_steps):
                         self.update(losses)
+            
+            if episode % evaluation_interval == 0:
+                evaluation_rewards.append(self.evaluate(env))
 
             rewards_memory.append(episode_reward)
             
             if (episode + 1) % print_interval == 0:
-                logging.info(f'Episode {episode + 1} - Reward: {episode_reward:.2f} - Steps: {step + 1}')
+                logging.info(f'Episode {episode + 1} - Reward: {episode_reward:.2f} - Steps: {self.steps + 1}')
 
             if (episode + 1) % checkpoint_interval == 0:
-                self.save_checkpoint(episode, episode_reward)
+                self.save_checkpoint(episode, episode_reward, self.steps)
                 if checkpoint_training_data:
-                    self.save_training_data(rewards_memory, losses, save_replay_buffer)
+                    self.save_training_data(rewards_memory, losses, evaluation_rewards, save_replay_buffer)
 
             torch.cuda.empty_cache()
 
-        self.save_checkpoint(max_episodes, rewards_memory[-1])
-        self.save_training_data(rewards_memory, losses, save_replay_buffer)
+        self.save_checkpoint(max_episodes, rewards_memory[-1], self.steps)
+        self.save_training_data(rewards_memory, losses, evaluation_rewards, save_replay_buffer)
         
-        return rewards_memory, losses
+        return rewards_memory, losses, evaluation_rewards
 
-    def save_checkpoint(self, episode, reward, experiment_number='42'):
+    def save_checkpoint(self, episode, reward, steps, experiment_number='42'):
         if self.best_model_path is None:
             self.best_model_path = os.path.join(self.checkpoint_dir, f'{experiment_number}_best_agent.pth')
         if self.last_model_path is None:
@@ -261,10 +294,11 @@ class TD3Agent:
         
         torch.save({
             'episode': episode,
+            'steps': steps,
             'reward': reward,
             'actor_state_dict': self.actor.state_dict(),
             'double_critic_state_dict': self.double_critic.state_dict(),
-            'actor_state_target_dict': self.actor_target.state_dict(),
+            'actor_target_state_dict': self.actor_target.state_dict(),
             'double_critic_target_state_dict': self.double_critic_target.state_dict(),
             'actor_optimizer_state_dict': self.actor_optimizer.state_dict(),
             'double_critic_optimizer_state_dict': self.double_critic_optimizer.state_dict(),
@@ -297,9 +331,10 @@ class TD3Agent:
             
             if not best:
                 self.actor_target.load_state_dict(checkpoint['actor_target_state_dict'])
-                self.double_critic_target.load_state_dict(checkpoint['double_critic_state_dict'])
+                self.double_critic_target.load_state_dict(checkpoint['double_critic_target_state_dict'])
                 self.actor_optimizer.load_state_dict(checkpoint['actor_optimizer_state_dict'])
                 self.double_critic_optimizer.load_state_dict(checkpoint['double_critic_optimizer_state_dict'])
+                self.steps = checkpoint['steps']
                 logging.info(f"Loaded last checkpoint from episode {checkpoint['episode'] + 1}.")
                 return checkpoint['episode'] + 1
             else:

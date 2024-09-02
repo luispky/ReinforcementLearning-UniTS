@@ -1,0 +1,137 @@
+TD3 Agent Configuration:
+hidden_units: [400, 300]
+conv_layers: None
+gamma: 0.99
+load_best: False
+replay_buffer_size: 200000
+batch_size: 100
+exploration_noise: 0.1
+policy_noise: 0.2
+noise_clip: 0.5
+policy_delay: 2
+actor_lr: 0.001
+critic_lr: 0.001
+tau: 0.005
+
+Train Configuration:
+gradient_steps: 1
+max_episodes: 2000
+warmup_steps: 15000
+print_interval: 20
+checkpoint_interval: 50
+test_episodes: 25
+save_replay_buffer: False
+evaluation_interval: 10
+
+Environment Seed: None
+
+Starting TD3 Training
+
+No pre-trained model found, training from scratch.
+
+Episode 20 - Reward: -110.50 - Steps: 3069
+Episode 40 - Reward: -112.65 - Steps: 6178
+Episode 60 - Reward: -111.02 - Steps: 10738
+Episode 80 - Reward: -106.52 - Steps: 17030
+Episode 100 - Reward: -126.34 - Steps: 24506
+Episode 120 - Reward: -122.98 - Steps: 30109
+Episode 140 - Reward: -132.35 - Steps: 32423
+Episode 160 - Reward: -130.65 - Steps: 34158
+Episode 180 - Reward: -101.50 - Steps: 38424
+Episode 200 - Reward: -106.97 - Steps: 45758
+Episode 220 - Reward: -59.83 - Steps: 64438
+Episode 240 - Reward: -104.57 - Steps: 79532
+Episode 260 - Reward: -124.47 - Steps: 91027
+Episode 280 - Reward: -83.82 - Steps: 115536
+Episode 300 - Reward: 30.48 - Steps: 133041
+Episode 320 - Reward: -89.00 - Steps: 152679
+Episode 340 - Reward: 55.16 - Steps: 164434
+Episode 360 - Reward: -48.85 - Steps: 189041
+Episode 380 - Reward: 118.51 - Steps: 213348
+Episode 400 - Reward: 151.95 - Steps: 240148
+Episode 420 - Reward: -105.02 - Steps: 243636
+Episode 440 - Reward: -101.44 - Steps: 245208
+Episode 460 - Reward: -102.89 - Steps: 246566
+Episode 480 - Reward: -112.76 - Steps: 251254
+Episode 500 - Reward: -17.64 - Steps: 261230
+Episode 520 - Reward: -105.69 - Steps: 273458
+Episode 540 - Reward: 273.39 - Steps: 296770
+Episode 560 - Reward: 53.09 - Steps: 318626
+Episode 580 - Reward: 112.41 - Steps: 329997
+Episode 600 - Reward: 277.71 - Steps: 348990
+Episode 620 - Reward: 295.75 - Steps: 365904
+Episode 640 - Reward: 292.39 - Steps: 382144
+Episode 660 - Reward: 286.95 - Steps: 398796
+Episode 680 - Reward: 295.69 - Steps: 414846
+Episode 700 - Reward: 289.08 - Steps: 431762
+Episode 720 - Reward: 298.54 - Steps: 447148
+Episode 740 - Reward: 296.00 - Steps: 463471
+Episode 760 - Reward: 53.83 - Steps: 476010
+Episode 780 - Reward: 294.46 - Steps: 490464
+Episode 800 - Reward: 295.74 - Steps: 506534
+Episode 820 - Reward: 50.60 - Steps: 521469
+Episode 840 - Reward: 295.17 - Steps: 536122
+Episode 860 - Reward: 99.42 - Steps: 547586
+Episode 880 - Reward: 139.72 - Steps: 561403
+Episode 900 - Reward: 303.58 - Steps: 575950
+Episode 920 - Reward: 298.40 - Steps: 587155
+Episode 940 - Reward: 298.54 - Steps: 600899
+Episode 960 - Reward: 297.85 - Steps: 614467
+Episode 980 - Reward: 305.26 - Steps: 628646
+Episode 1000 - Reward: 302.44 - Steps: 643606
+Episode 1020 - Reward: 19.02 - Steps: 656793
+Episode 1040 - Reward: 303.35 - Steps: 669858
+Episode 1060 - Reward: 301.62 - Steps: 683136
+Episode 1080 - Reward: 301.07 - Steps: 697007
+Episode 1100 - Reward: 303.02 - Steps: 711187
+Episode 1120 - Reward: 48.86 - Steps: 724110
+Episode 1140 - Reward: 305.23 - Steps: 738570
+Episode 1160 - Reward: 304.45 - Steps: 753123
+Episode 1180 - Reward: 304.49 - Steps: 766776
+Episode 1200 - Reward: 304.67 - Steps: 781267
+Episode 1220 - Reward: 306.62 - Steps: 792914
+Episode 1240 - Reward: -104.68 - Steps: 804360
+Episode 1260 - Reward: 303.64 - Steps: 818719
+Episode 1280 - Reward: 308.13 - Steps: 833533
+Episode 1300 - Reward: 306.57 - Steps: 847567
+Episode 1320 - Reward: 311.01 - Steps: 861366
+Episode 1340 - Reward: 129.77 - Steps: 875791
+Episode 1360 - Reward: 306.96 - Steps: 888335
+Episode 1380 - Reward: 167.47 - Steps: 899841
+Episode 1400 - Reward: -86.65 - Steps: 909817
+Episode 1420 - Reward: 132.67 - Steps: 923722
+Episode 1440 - Reward: 302.19 - Steps: 936165
+Episode 1460 - Reward: 74.80 - Steps: 949427
+Episode 1480 - Reward: -62.68 - Steps: 959959
+Episode 1500 - Reward: 307.38 - Steps: 969221
+Episode 1520 - Reward: 167.11 - Steps: 983865
+Episode 1540 - Reward: 313.57 - Steps: 997271
+Episode 1560 - Reward: 306.82 - Steps: 1010764
+Episode 1580 - Reward: -115.15 - Steps: 1023360
+Episode 1600 - Reward: 53.34 - Steps: 1034520
+Episode 1620 - Reward: 314.33 - Steps: 1046735
+Episode 1640 - Reward: 123.56 - Steps: 1058432
+Episode 1660 - Reward: 306.09 - Steps: 1071130
+Episode 1680 - Reward: 314.22 - Steps: 1085292
+Episode 1700 - Reward: 315.13 - Steps: 1098951
+Episode 1720 - Reward: 65.32 - Steps: 1112514
+Episode 1740 - Reward: 313.30 - Steps: 1123122
+Episode 1760 - Reward: 307.68 - Steps: 1137064
+Episode 1780 - Reward: 313.49 - Steps: 1151432
+Episode 1800 - Reward: 310.34 - Steps: 1164867
+Episode 1820 - Reward: 308.32 - Steps: 1177387
+Episode 1840 - Reward: 312.64 - Steps: 1189858
+Episode 1860 - Reward: 108.24 - Steps: 1201259
+Episode 1880 - Reward: 80.04 - Steps: 1215246
+Episode 1900 - Reward: 313.77 - Steps: 1227200
+Episode 1920 - Reward: 307.51 - Steps: 1240819
+Episode 1940 - Reward: -101.40 - Steps: 1247933
+Episode 1960 - Reward: 312.62 - Steps: 1260651
+Episode 1980 - Reward: 313.37 - Steps: 1270788
+Episode 2000 - Reward: 308.95 - Steps: 1283897
+Training time: 3h 49m 40s
+Reward over 25 episodes: 309.51 ± 0.14
+Total Reward of Policy Evaluation: -75.11
+Loaded model with reward: 315.13
+Loaded best agent checkpoint.
+Total Reward of Policy Evaluation: 314.80

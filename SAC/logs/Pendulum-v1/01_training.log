@@ -1,0 +1,118 @@
+SAC Agent Configuration:
+hidden_units: [128, 128]
+conv_layers: None
+log_std_interval: [-20, 2]
+gamma: 0.99
+load_best: False
+replay_buffer_size: 100000
+batch_size: 256
+init_temperature: 0.2
+actor_lr: 0.0003
+critic_lr: 0.0003
+temperature_lr: 0.0003
+actor_update_freq: 1
+critic_target_update_freq: 1
+tau: 0.005
+
+Train Configuration:
+gradient_steps: 1
+max_episodes: 800
+warmup_steps: 5000
+print_interval: 10
+checkpoint_interval: 50
+test_episodes: 25
+save_replay_buffer: False
+evaluation_interval: 10
+
+Environment Seed: None
+
+Starting SAC Training
+
+No pre-trained model found, training from scratch.
+
+Episode 10 - Reward: -980.94 - Alpha: 0.20000 - Steps: 2001
+Episode 20 - Reward: -1525.59 - Alpha: 0.20000 - Steps: 4001
+Episode 30 - Reward: -1732.49 - Alpha: 0.15730 - Steps: 6001
+Episode 40 - Reward: -1301.12 - Alpha: 0.13505 - Steps: 8001
+Episode 50 - Reward: -121.38 - Alpha: 0.17988 - Steps: 10001
+Episode 60 - Reward: -127.83 - Alpha: 0.17763 - Steps: 12001
+Episode 70 - Reward: -128.48 - Alpha: 0.23051 - Steps: 14001
+Episode 80 - Reward: -117.45 - Alpha: 0.21699 - Steps: 16001
+Episode 90 - Reward: -119.84 - Alpha: 0.18757 - Steps: 18001
+Episode 100 - Reward: -128.36 - Alpha: 0.16875 - Steps: 20001
+Episode 110 - Reward: -1.10 - Alpha: 0.17374 - Steps: 22001
+Episode 120 - Reward: -120.41 - Alpha: 0.15868 - Steps: 24001
+Episode 130 - Reward: -224.31 - Alpha: 0.13426 - Steps: 26001
+Episode 140 - Reward: -118.10 - Alpha: 0.11431 - Steps: 28001
+Episode 150 - Reward: -244.82 - Alpha: 0.09999 - Steps: 30001
+Episode 160 - Reward: -239.33 - Alpha: 0.08973 - Steps: 32001
+Episode 170 - Reward: -1.77 - Alpha: 0.08206 - Steps: 34001
+Episode 180 - Reward: -124.19 - Alpha: 0.07192 - Steps: 36001
+Episode 190 - Reward: -248.05 - Alpha: 0.06381 - Steps: 38001
+Episode 200 - Reward: -1.30 - Alpha: 0.05948 - Steps: 40001
+Episode 210 - Reward: -230.96 - Alpha: 0.05878 - Steps: 42001
+Episode 220 - Reward: -121.34 - Alpha: 0.05686 - Steps: 44001
+Episode 230 - Reward: -125.80 - Alpha: 0.05399 - Steps: 46001
+Episode 240 - Reward: -122.77 - Alpha: 0.05081 - Steps: 48001
+Episode 250 - Reward: -229.89 - Alpha: 0.04681 - Steps: 50001
+Episode 260 - Reward: -115.13 - Alpha: 0.04422 - Steps: 52001
+Episode 270 - Reward: -123.43 - Alpha: 0.04026 - Steps: 54001
+Episode 280 - Reward: -126.78 - Alpha: 0.03697 - Steps: 56001
+Episode 290 - Reward: -233.98 - Alpha: 0.03415 - Steps: 58001
+Episode 300 - Reward: -121.89 - Alpha: 0.03297 - Steps: 60001
+Episode 310 - Reward: -236.45 - Alpha: 0.03127 - Steps: 62001
+Episode 320 - Reward: -335.87 - Alpha: 0.03306 - Steps: 64001
+Episode 330 - Reward: -232.79 - Alpha: 0.03185 - Steps: 66001
+Episode 340 - Reward: -319.79 - Alpha: 0.03128 - Steps: 68001
+Episode 350 - Reward: -1.93 - Alpha: 0.02978 - Steps: 70001
+Episode 360 - Reward: -130.46 - Alpha: 0.02864 - Steps: 72001
+Episode 370 - Reward: -124.28 - Alpha: 0.02848 - Steps: 74001
+Episode 380 - Reward: -344.17 - Alpha: 0.02926 - Steps: 76001
+Episode 390 - Reward: -120.79 - Alpha: 0.02766 - Steps: 78001
+Episode 400 - Reward: -117.25 - Alpha: 0.02401 - Steps: 80001
+Episode 410 - Reward: -350.90 - Alpha: 0.02193 - Steps: 82001
+Episode 420 - Reward: -237.30 - Alpha: 0.02028 - Steps: 84001
+Episode 430 - Reward: -224.87 - Alpha: 0.02168 - Steps: 86001
+Episode 440 - Reward: -1.72 - Alpha: 0.02213 - Steps: 88001
+Episode 450 - Reward: -243.67 - Alpha: 0.02154 - Steps: 90001
+Episode 460 - Reward: -125.57 - Alpha: 0.01915 - Steps: 92001
+Episode 470 - Reward: -228.91 - Alpha: 0.02035 - Steps: 94001
+Episode 480 - Reward: -117.80 - Alpha: 0.01803 - Steps: 96001
+Episode 490 - Reward: -240.76 - Alpha: 0.01620 - Steps: 98001
+Episode 500 - Reward: -234.16 - Alpha: 0.01298 - Steps: 100001
+Episode 510 - Reward: -233.33 - Alpha: 0.01096 - Steps: 102001
+Episode 520 - Reward: -246.78 - Alpha: 0.00814 - Steps: 104001
+Episode 530 - Reward: -253.31 - Alpha: 0.00923 - Steps: 106001
+Episode 540 - Reward: -125.29 - Alpha: 0.00964 - Steps: 108001
+Episode 550 - Reward: -221.24 - Alpha: 0.01094 - Steps: 110001
+Episode 560 - Reward: -121.37 - Alpha: 0.00830 - Steps: 112001
+Episode 570 - Reward: -243.91 - Alpha: 0.00789 - Steps: 114001
+Episode 580 - Reward: -125.78 - Alpha: 0.00634 - Steps: 116001
+Episode 590 - Reward: -115.57 - Alpha: 0.00821 - Steps: 118001
+Episode 600 - Reward: -117.51 - Alpha: 0.00940 - Steps: 120001
+Episode 610 - Reward: -316.65 - Alpha: 0.01112 - Steps: 122001
+Episode 620 - Reward: -0.73 - Alpha: 0.01165 - Steps: 124001
+Episode 630 - Reward: -114.50 - Alpha: 0.01107 - Steps: 126001
+Episode 640 - Reward: -228.83 - Alpha: 0.01148 - Steps: 128001
+Episode 650 - Reward: -123.83 - Alpha: 0.01053 - Steps: 130001
+Episode 660 - Reward: -2.01 - Alpha: 0.01013 - Steps: 132001
+Episode 670 - Reward: -117.79 - Alpha: 0.00916 - Steps: 134001
+Episode 680 - Reward: -113.53 - Alpha: 0.00831 - Steps: 136001
+Episode 690 - Reward: -0.27 - Alpha: 0.00839 - Steps: 138001
+Episode 700 - Reward: -127.65 - Alpha: 0.00609 - Steps: 140001
+Episode 710 - Reward: -128.93 - Alpha: 0.00597 - Steps: 142001
+Episode 720 - Reward: -124.63 - Alpha: 0.00707 - Steps: 144001
+Episode 730 - Reward: -117.23 - Alpha: 0.00847 - Steps: 146001
+Episode 740 - Reward: -120.97 - Alpha: 0.01659 - Steps: 148001
+Episode 750 - Reward: -1.05 - Alpha: 0.01964 - Steps: 150001
+Episode 760 - Reward: -124.99 - Alpha: 0.01980 - Steps: 152001
+Episode 770 - Reward: -229.49 - Alpha: 0.01888 - Steps: 154001
+Episode 780 - Reward: -127.08 - Alpha: 0.01753 - Steps: 156001
+Episode 790 - Reward: -116.13 - Alpha: 0.01628 - Steps: 158001
+Episode 800 - Reward: -127.02 - Alpha: 0.01485 - Steps: 160001
+Training time: 1h 6m 0s
+Reward over 25 episodes: -115.93 ± 0.03
+Total Reward of Policy Evaluation: -126.00
+Loaded model with reward: -1.05 and alpha: 0.01964
+Loaded best agent checkpoint.
+Total Reward of Policy Evaluation: -0.61

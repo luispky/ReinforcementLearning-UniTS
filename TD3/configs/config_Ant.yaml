@@ -1,10 +1,10 @@
-experiment_number: '01'
+experiment_number: '02'
 
 environment:
   env_name: Ant-v4
   hardcore: False
   render_mode: rgb_array
-  seed:  # Empty for random seed, makes the experiment "non-deterministic"
+  seed: 42 # Empty for random seed, makes the experiment "non-deterministic"
   image_processing: False
   image_size: 
   stack_frames:
@@ -33,3 +33,4 @@ train:
   checkpoint_interval: 50
   test_episodes: 25
   save_replay_buffer: False
+  evaluation_interval: 10 
