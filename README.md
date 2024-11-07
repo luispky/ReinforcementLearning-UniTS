@@ -5,17 +5,17 @@
 
 # Short Description
 
-This project implements the Soft Actor-Critic and Twin Delayed Deep Deterministic Policy Gradient algorithms to tackle continuous actions on some [Gymnasium](https://gymnasium.farama.org/#) environments.
+This project implements the [Soft Actor-Critic](https://arxiv.org/abs/1812.05905) (SAC) and [Twin Delayed Deep Deterministic Policy Gradient](https://arxiv.org/abs/1802.0947) (TD3) algorithms to tackle continuous actions on some [Gymnasium](https://gymnasium.farama.org/#) environments.
 
 # Results
 
 Here are some of the results.
 
-Bipedal Walker (TD3):
+[Bipedal Walker](https://gymnasium.farama.org/environments/box2d/bipedal_walker/) (TD3):
 
-[![Bipedal Walker](https://github.com/luispky/ReinforcementLearning-UniTS/raw/master/TD3/results/BipedalWalker-v3/01_best_policy.gif)](https://gymnasium.farama.org/environments/classic_control/pendulum/0)
+![Bipedal Walker](https://github.com/luispky/ReinforcementLearning-UniTS/raw/master/TD3/results/BipedalWalker-v3/01_best_policy.gif)
 
-Humanoid (SAC):
+[Humanoid](https://gymnasium.farama.org/environments/mujoco/humanoid/) (SAC):
 
 ![Humanoid](https://github.com/luispky/ReinforcementLearning-UniTS/blob/master/SAC/results/Humanoid-v4/01_last_policy.gif)
 
